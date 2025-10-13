@@ -1,3 +1,12 @@
-ch1 - https://ibuki-fs.netlify.app/
+<center>
+<a href="https://ibuki-fs-directory.netlify.app/">Directory</a>
+<hr>
+<h1>Chapter Lists</h1>
 
-ch2 - mmmm maybe later
+<a href="https://ibuki-fs-ch1.netlify.app/">Chapter 1</a>
+
+<a href="https://ibuki-fs-ch2.netlify.app/">Chapter 2</a>
+
+<hr>
+why is ibuki so short here...
+ALL THATS LEFT IS PLACING THE DIRECTORY but im too lazy tbh..
