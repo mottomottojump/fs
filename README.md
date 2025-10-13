@@ -9,3 +9,4 @@
 
 <hr>
 why is ibuki so short here...
+ALL THATS LEFT IS PLACING THE DIRECTORY but im too lazy tbh..
