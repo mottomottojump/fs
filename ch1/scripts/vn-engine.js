@@ -1,68 +1,41 @@
-
-
 let playerSettings = {
-  name: "Player",
-  pronouns: {
-    subjective: "she",
-    objective: "her",
-    possessive: "hers",
-    reflexive: "herself"
-  }
+  name: "Anzu"
 };
 
 function replacePlaceholders(text) {
-  const pronouns = playerSettings.pronouns;
   const replacePreservingCase = (match) => {
     const lowerMatch = match.toLowerCase();
-    let replacement;
     if (lowerMatch === '[anzu]') {
-      replacement = playerSettings.name;
-    } else {
-      replacement = {
-        '[she]': pronouns.subjective,
-        '[her]': pronouns.objective,
-        '[hers]': pronouns.possessive,
-        '[herself]': pronouns.reflexive,
-        '[they]': pronouns.subjective,
-        '[them]': pronouns.objective,
-        '[their]': pronouns.possessive,
-        '[theirs]': pronouns.possessive,
-        '[themself]': pronouns.reflexive
-      }[lowerMatch] || match;
+      return playerSettings.name;
     }
-    // Preserve capitalization of first letter inside brackets
-    if (match[1] === match[1].toUpperCase()) {
-      return replacement.charAt(0).toUpperCase() + replacement.slice(1);
-    }
-    return replacement;
+    return match;
   };
-  // Only replace [anzu] (case-insensitive) and pronoun placeholders
-  const regex = /\[(anzu|she|her|hers|herself|they|them|their|theirs|themself)\]/gi;
+  const regex = /\[anzu\]/gi;
   return text.replace(regex, replacePreservingCase);
 }
 
 function generateDialogues() {
   const root = document.getElementById('vn-root');
-  root.innerHTML = ''; // Clear existing content first
-  
-dialogues.forEach(d => {
-  let vnPngHtml = '';
-  if (d.png && typeof d.png === 'string' && d.png.trim() !== "") {
-    const charaImage = d.png.startsWith('chara/') ? d.png : `chara/${d.png}`;
-    vnPngHtml = `<div class="vn-png"><img src="${charaImage}" alt=""></div>`;
-  }
-  root.innerHTML += `
-  <div class="vn-container">
-    ${vnPngHtml}
-    <div class="vn-box">
-      <div class="vn-name">${d.name}</div>
-      <div class="vn-text" data-original="${d.dialogue.replace(/"/g, '&quot;')}">
-        ${replacePlaceholders(d.dialogue)}
+  root.innerHTML = '';
+
+  dialogues.forEach(d => {
+    let vnPngHtml = '';
+    if (d.png && typeof d.png === 'string' && d.png.trim() !== "") {
+      const charaImage = d.png.startsWith('chara/') ? d.png : `chara/${d.png}`;
+      vnPngHtml = `<div class="vn-png"><img src="${charaImage}" alt=""></div>`;
+    }
+    root.innerHTML += `
+      <div class="vn-container">
+        ${vnPngHtml}
+        <div class="vn-box">
+          <div class="vn-name">${d.name}</div>
+          <div class="vn-text" data-original="${d.dialogue.replace(/"/g, '&quot;')}">
+            ${replacePlaceholders(d.dialogue)}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  `;
-});
+    `;
+  });
 }
 
 
@@ -140,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'Settings':
           document.querySelector('.settings-panel').style.display = 'flex';
           document.getElementById('player-name').value = playerSettings.name;
-          initPronounButtons();
           break;
         case 'Home':
           break;
@@ -150,25 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function initPronounButtons() {
-    const current = playerSettings.pronouns.subjective;
-    document.querySelectorAll('.pronoun-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.pronoun === current);
-    });
-  }
-
-  document.querySelectorAll('.pronoun-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const pronoun = btn.dataset.pronoun;
-      playerSettings.pronouns = pronoun === 'he' ? 
-        { subjective: 'he', objective: 'him' } :
-        pronoun === 'they' ? 
-        { subjective: 'they', objective: 'them' } :
-        { subjective: 'she', objective: 'her' };
-      
-      initPronounButtons();
-    });
-  });
 
   document.querySelector('.save-settings')?.addEventListener('click', () => {
     playerSettings.name = document.getElementById('player-name').value.trim() || "Player";
@@ -233,19 +186,20 @@ document.querySelector('.save-settings').addEventListener('click', () => {
 const bgContainer = document.getElementById('background-container');
 
 let typewriterTimeout;
-function typewriterEffect(element, text, speed = 30) {
+function typewriterEffect(element, text, speed = 15, step = 2) {
   if (typewriterTimeout) clearTimeout(typewriterTimeout);
   element.textContent = "";
   let i = 0;
   function type() {
     if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
+      element.textContent += text.slice(i, i + step);
+      i += step;
       typewriterTimeout = setTimeout(type, speed);
     }
   }
   type();
 }
+
 
 let lastMode = null;
 function showDialogue(index) {
@@ -519,7 +473,6 @@ if (dialogue.card) {
   textEl.textContent = replacePlaceholders(dialogue.dialogue);
 }
 
-// Only bounce if not in card mode
 if (!dialogue.card) {
   const vnBox = document.querySelector('.vn-box');
   vnBox.classList.add('bounce');

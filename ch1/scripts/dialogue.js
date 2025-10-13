@@ -75,7 +75,7 @@ const dialogues = [
   bg: "practice-room.png",
   png: "kuro-prac.png",
   name: "Kuro",
-  dialogue: "Looks like [she\'s] got business with Taki about his ‘custom outfit' or something."
+  dialogue: "Looks like she's got business with Taki about his ‘custom outfit' or something."
 },
 {
   bg: "practice-room.png",
@@ -123,13 +123,13 @@ const dialogues = [
   bg: "practice-room.png",
   png: "keito-prac.png",
   name: "Keito",
-  dialogue: "(Hmm... Still, [she] seems oddly anxious for that to be the only reason.)"
+  dialogue: "(Hmm... Still, she seems oddly anxious for that to be the only reason.)"
 },
 {
   bg: "practice-room.png",
   png: "keito-prac.png",
   name: "Keito",
-  dialogue: "(Besides, if [she] just needed to see Taki, [she] could've met him somewhere else instead of coming here.)"
+  dialogue: "(Besides, if she just needed to see Taki, she could've met him somewhere else instead of coming here.)"
 },
 {
   bg: "practice-room.png",
@@ -171,7 +171,7 @@ const dialogues = [
   bg: "practice-room.png",
   png: "kuro-prac.png",
   name: "Kuro",
-  dialogue: "Nah, [she]'s here 'cause [she]'s got something to talk to you about, your 'custom outfit.'"
+  dialogue: "Nah, she's here 'cause she's got something to talk to you about, your 'custom outfit.'"
 },
 {
   bg: "practice-room.png",
@@ -359,19 +359,19 @@ const dialogues = [
     bg: "practice-room.png",
     png: "keito-prac.png",
     name: "Keito",
-    dialogue: "Maybe that's why there are so many designs—because [she] couldn't settle on one that felt right for your ‘custom outfit.'"
+    dialogue: "Maybe that's why there are so many designs—because she couldn't settle on one that felt right for your ‘custom outfit.'"
   },
   {
     bg: "practice-room.png",
     png: "kuro-prac.png",
     name: "Kuro",
-    dialogue: "[She] must've been thinking hard about it right up to the last minute, but still couldn't come up with the perfect idea."
+    dialogue: "she must've been thinking hard about it right up to the last minute, but still couldn't come up with the perfect idea."
   },
   {
     bg: "practice-room.png",
     png: "kuro-prac.png",
     name: "Kuro",
-    dialogue: "Which is why [she] wanted you to check the designs as soon as possible, huh."
+    dialogue: "Which is why she wanted you to check the designs as soon as possible, huh."
   },
   {
     bg: "practice-room.png",
